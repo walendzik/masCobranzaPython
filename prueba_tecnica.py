@@ -51,21 +51,22 @@ df.drop(columns=["Apellido",'Nombre'])
 cols=list(df.columns)
 cols
 
-df[['Matrícula','Nombre completo', 'Categoría', 'Departamento', 'Sección', 'Salario', 'Fecha ingreso', 'Fch nacimiento'
- ]]
+df=df[['Matrícula','Nombre completo', 'Categoría', 'Departamento', 'Sección', 'Salario', 'Fecha ingreso', 'Fch nacimiento' ]]
  
 #Código
 
 #----------------------------------------#
 #7 - La columna H e I de la base de datos contiene los nombres de "Fch ingreso" y "Fch nacimiento". 
 # Renombrar estas columnas por su nombre correcto: "Fecha Ingreso" y "Fecha Nacimiento".
-df.rename({"Fecha ingreso": "Fecha Ingreso","Fch nacimiento": "Fecha Nacimiento"}, axis='columns' )
+df.rename({"Fecha ingreso": "Fecha Ingreso","Fch nacimiento": "Fecha Nacimiento"}, axis=1 )
 
 #Código
 
 #----------------------------------------#
 #8 - A estas columnas ("Fecha Ingreso" y "Fecha Nacimiento") reemplazar todos sus valores "/" por
 # "-". De forma tal que la fecha quede especificada con el formato de la siguiente manera: dd-mm-aaaa
+#df["nombre de la columna fecha"] = pd.to_datetime(df["nombre de la columna fecha"]).strtime("%d-%m-%Y")
+df["Fecha ingreso"] = pd.to_datetime(df["Fecha ingreso"]).strtime("%d-%m-%Y")
 
 #Código
 
@@ -79,8 +80,19 @@ print (df)
 #----------------------------------------#
 #10 - Generar un nuevo excel con las modificaciones realizadas en los puntos anteriores.
 
-base_de_datos = pd.read_excel("formulario.xlsx")
-base_de_datos.to_excel ("formulario_exp.xlsx")
+#base_de_datos = pd.read_excel("base_de_datos.xlsx")
+#base_de_datos.to_excel ("formulario1_exp.xlsx")
+
+import pandas as pd 
+
+##base_de_datos = pd.read_excel("base_de_datos.xlsx")
+#base_de_datos.to_excel ("formulario_exp.xlsx")
+#base_de_datos= pd.read_excel("formulario.xlsx")
+#df.to_excel("formulario_exp.xlsx")
+
+base_de_datos= pd.read_excel("base_de_datos.xlsx")
+df.to_excel ("formulario2S_exp.xlsx")
+
 #Código
 
 #----------------------------------------#
